@@ -9,8 +9,8 @@ Here is where you describe what the program does
 graph TD;
   Main-->Seat_Prices;
   Main-->Seating_Chart;
-  Main-->Ticket Sales;
-  Main-->Purchase Ticket;
+  Main-->Ticket_Sales;
+  Main-->Purchase_Ticket;
 ```
 
 #### Function Diagrams

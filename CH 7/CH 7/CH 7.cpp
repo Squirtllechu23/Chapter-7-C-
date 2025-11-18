@@ -21,6 +21,10 @@ void Show_Statistics();
 int main()
 {
 	Seat_Prices();
+	
+	for (int r = 0; r < ROWS; ++r)
+		for (int s = 0; s < SEATS_PER_ROW; ++s)
+			seats[r][s] = '#';
 
 	int choice = 0;
 	do
@@ -69,30 +73,34 @@ int main()
 // Shows the total seats sold, available seats, and how much capacity is in the auditorium
 void Show_Statistics()
 {
-	int totalSold = 0;
-	int totalAvailable = 0;
-
-	cout << "\nAvailability per row:\n";
-
+	cout << "Enter the seat price for each row (1-30).\n";
 	for (int r = 0; r < ROWS; ++r)
 	{
-		int soldPerRow = 0;
-		int availablePerRow = 0;
-		for (int seat = 0; seat < SEATS_PER_ROW; ++seat)
+		double price = -1;
+		while (true)
 		{
-			if (seats[r][seat] == '*') ++soldPerRow;
-			else ++availablePerRow;
+			cout << "Price for row " << (r + 1) << ": $";
+			if (!(cin >> price))
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Invalid input. Enter a number please.\n" << endl;
+				continue;
+			}
+
+			if (price < 0.0)
+			{
+				cout << "Price must be 0 or greater. Try again.\n" << endl;
+				continue;
+			}
+			break;
 		}
-
-		totalSold += soldPerRow;
-		totalAvailable += availablePerRow;
-
-		cout << "Row " << setw(2) << (r + 1) << ": SOld = " << setw(3) << soldPerRow
-			<< ", Available = " << setw(3) << availablePerRow
-			<< ", Price = $" << fixed << setprecision(2) << seatPrices[r] << '\n';
+		seatPrices[r] = price;
 	}
+}
 
-	cout << "\nTotal seats sold: " << totalSold;
-	cout << "\nTotal seats available: " << totalAvailable;
-	cout << "\nTotal auditorium capacity: " << (ROWS * SEATS_PER_ROW) << '\n';
+void Ticket_Sales()
+{
+	cout << fixed << setprecision(2);
+	cout << "\nTotal ticket sales: $" << totalSales << '\n';
 }

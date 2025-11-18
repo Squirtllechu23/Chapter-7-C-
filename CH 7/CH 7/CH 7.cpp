@@ -12,7 +12,6 @@ double totalSales = 0.0;
 
 // Function definition
 void Seat_Prices();
-void Initialize_Seating();
 void Display_Seating();
 void Purchase_Ticket();
 void Ticket_Sales();
@@ -22,7 +21,10 @@ void Show_Statistics();
 int main()
 {
 	Seat_Prices();
-	Initialize_Seating();
+	
+	for (int r = 0; r < ROWS; ++r)
+		for (int s = 0; s < SEATS_PER_ROW; ++s)
+			seats[r][s] = '#';
 
 	int choice = 0;
 	do
@@ -67,10 +69,36 @@ int main()
 	return 0;
 }
 
-void Initialize_Seating()
+void Seat_Prices()
 {
+	cout << "Enter the seat price for each row (1-30).\n";
 	for (int r = 0; r < ROWS; ++r)
-		for (int s = 0; s < SEATS_PER_ROW; ++s)
-			seats[r][s] = '#';
+	{
+		double price = -1;
+		while (true)
+		{
+			cout << "Price for row " << (r + 1) << ": $";
+			if (!(cin >> price))
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Invalid input. Enter a number please.\n" << endl;
+				continue;
+			}
+
+			if (price < 0.0)
+			{
+				cout << "Price must be 0 or greater. Try again.\n" << endl;
+				continue;
+			}
+			break;
+		}
+		seatPrices[r] = price;
+	}
 }
 
+void Ticket_Sales()
+{
+	cout << fixed << setprecision(2);
+	cout << "\nTotal ticket sales: $" << totalSales << '\n';
+}

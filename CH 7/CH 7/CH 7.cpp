@@ -12,7 +12,6 @@ double totalSales = 0.0;
 
 // Function definition
 void Seat_Prices();
-void Initialize_Seating();
 void Display_Seating();
 void Purchase_Ticket();
 void Ticket_Sales();
@@ -66,15 +65,6 @@ int main()
 
 	return 0;
 }
-
-void Initialize_Seating()
-{
-	for (int r = 0; r < ROWS; ++r)
-		for (int s = 0; s < SEATS_PER_ROW; ++s)
-			seats[r][s] = '#';
-}
-
-
 
 void Show_Statistics()
 {

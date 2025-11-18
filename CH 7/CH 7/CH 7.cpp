@@ -21,7 +21,6 @@ void Show_Statistics();
 int main()
 {
 	Seat_Prices();
-	Initialize_Seating();
 
 	int choice = 0;
 	do

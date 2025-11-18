@@ -69,7 +69,9 @@ int main()
 	return 0;
 }
 
-void Seat_Prices()
+
+// Shows the total seats sold, available seats, and how much capacity is in the auditorium
+void Show_Statistics()
 {
 	cout << "Enter the seat price for each row (1-30).\n";
 	for (int r = 0; r < ROWS; ++r)

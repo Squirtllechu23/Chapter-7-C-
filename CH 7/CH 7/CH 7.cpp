@@ -12,7 +12,6 @@ double totalSales = 0.0;
 
 // Function definition
 void Seat_Prices();
-void Initialize_Seating();
 void Display_Seating();
 void Purchase_Ticket();
 void Ticket_Sales();
@@ -22,7 +21,6 @@ void Show_Statistics();
 int main()
 {
 	Seat_Prices();
-	Initialize_Seating();
 
 	int choice = 0;
 	do
@@ -67,15 +65,8 @@ int main()
 	return 0;
 }
 
-void Initialize_Seating()
-{
-	for (int r = 0; r < ROWS; ++r)
-		for (int s = 0; s < SEATS_PER_ROW; ++s)
-			seats[r][s] = '#';
-}
 
-
-
+// Shows the total seats sold, available seats, and how much capacity is in the auditorium
 void Show_Statistics()
 {
 	int totalSold = 0;

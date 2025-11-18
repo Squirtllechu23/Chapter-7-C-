@@ -74,3 +74,34 @@ void Initialize_Seating()
 			seats[r][s] = '#';
 }
 
+
+
+void Show_Statistics()
+{
+	int totalSold = 0;
+	int totalAvailable = 0;
+
+	cout << "\nAvailability per row:\n";
+
+	for (int r = 0; r < ROWS; ++r)
+	{
+		int soldPerRow = 0;
+		int availablePerRow = 0;
+		for (int seat = 0; seat < SEATS_PER_ROW; ++seat)
+		{
+			if (seats[r][seat] == '*') ++soldPerRow;
+			else ++availablePerRow;
+		}
+
+		totalSold += soldPerRow;
+		totalAvailable += availablePerRow;
+
+		cout << "Row " << setw(2) << (r + 1) << ": SOld = " << setw(3) << soldPerRow
+			<< ", Available = " << setw(3) << availablePerRow
+			<< ", Price = $" << fixed << setprecision(2) << seatPrices[r] << '\n';
+	}
+
+	cout << "\nTotal seats sold: " << totalSold;
+	cout << "\nTotal seats available: " << totalAvailable;
+	cout << "\nTotal auditorium capacity: " << (ROWS * SEATS_PER_ROW) << '\n';
+}
